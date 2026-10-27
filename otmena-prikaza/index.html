@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f6f7f5">
+  <title>Отмена судебного приказа — INVAL Free</title>
+  <meta name="description" content="Бесплатный генератор возражений на судебный приказ по ГПК РФ. Без регистрации и передачи документов на сервер.">
+  <link rel="stylesheet" href="/otmena-prikaza/style.css">
+  <script type="module" src="/otmena-prikaza/app.js?v=1.5"></script>
+</head>
+<body>
+  <header class="header frame no-print">
+    <a class="brand" href="/" aria-label="INVAL — главная"><span class="brand-mark">i</span> INVAL<span class="brand-dot">.</span></a>
+    <nav><a href="/">Главная</a><a href="#privacy">Как защищены документы</a><a href="/support/">Поддержать проект</a></nav>
+    <span class="edition">FREE / 1.5</span>
+  </header>
+
+  <main class="frame no-print" id="main">
+    <div class="intro">
+      <div class="eyebrow"><span class="pulse"></span> БЕСПЛАТНЫЙ ИНСТРУМЕНТ</div>
+      <h1>Отмена судебного<br><span>приказа.</span></h1>
+      <p>Подготовьте возражения для суда. На вашем устройстве — без регистрации, загрузки файлов на сервер или отправки текста в облачные сервисы.</p>
+    </div>
+
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Этапы работы">
+        <div class="side-top">ВАШ ДОКУМЕНТ</div>
+        <ol class="step-list">
+          <li class="active" data-step-indicator="1"><span class="circle">01</span><span>Документ<small>Файл или ручной ввод</small></span></li>
+          <li data-step-indicator="2"><span class="circle">02</span><span>Реквизиты<small>Проверка сведений</small></span></li>
+          <li data-step-indicator="3"><span class="circle">03</span><span>Сроки<small>Выбор ситуации</small></span></li>
+          <li data-step-indicator="4"><span class="circle">04</span><span>Результат<small>Word и PDF</small></span></li>
+        </ol>
+        <div class="side-privacy"><span class="side-lock">⌑</span><strong>Только в вашем браузере</strong><p>Данные не отправляются на сервер. После закрытия вкладки введённые сведения не сохраняются сайтом.</p></div>
+      </aside>
+
+      <div class="flow">
+        <div id="error-box" class="alert error" role="alert" hidden></div>
+        <div id="notice-box" class="alert notice" role="status" aria-live="polite" hidden></div>
+
+        <section class="panel" data-panel="1" aria-labelledby="s1-title">
+          <div class="step-label">ШАГ 01 / 04</div>
+          <h2 id="s1-title">Загрузите судебный приказ</h2>
+          <p class="subhead">Поддерживаются PDF, JPG, PNG и WEBP. Если распознать файл не получится — сведения можно ввести вручную.</p>
+          <div class="drop" id="dropzone">
+            <div class="drop-symbol">⇧</div>
+            <strong>Выберите файл или перетащите сюда</strong>
+            <p>До 15 МБ. Файл обрабатывается на вашем устройстве.</p>
+            <label class="btn dark file-label" for="file-input">Выбрать документ</label>
+            <input id="file-input" type="file" accept="application/pdf,image/png,image/jpeg,image/webp,.pdf,.jpg,.jpeg,.png,.webp" aria-label="Судебный приказ">
+          </div>
+          <div id="recognition-status" class="recognition" aria-live="polite" hidden>
+            <div class="loader" aria-hidden="true"></div>
+            <div><strong id="recognition-title">Обработка документа</strong><p id="recognition-detail">Подготовка...</p></div>
+          </div>
+          <div id="recognized-info" class="recognized" hidden>
+            <strong>Текст считан. Проверьте результат.</strong>
+            <span id="document-kind" class="kind" aria-live="polite"></span>
+            <details><summary>Посмотреть распознанный текст</summary><label for="raw-text">Текст доступен для исправления</label><textarea id="raw-text" rows="8" spellcheck="false"></textarea><button id="reparse" type="button" class="inline-button">Повторно найти реквизиты</button></details>
+          </div>
+          <div class="callout"><strong>Важно:</strong> версия 1.5 предназначена для судебных приказов по <strong>ГПК РФ</strong>. Приказы по КАС РФ, АПК РФ и обычные судебные решения пока не поддерживаются.</div>
+          <div class="actions"><button class="btn dark" type="button" id="go-2">Продолжить <span>↗</span></button><span class="actions-hint">Без файла тоже можно</span></div>
+        </section>
+
+        <section class="panel" data-panel="2" aria-labelledby="s2-title" hidden>
+          <div class="step-label">ШАГ 02 / 04</div>
+          <h2 id="s2-title">Проверьте реквизиты</h2>
+          <p class="subhead">Автоматическое распознавание иногда ошибается. Сверьте каждую строку с судебным приказом. Ничего не заполняем догадками.</p>
+          <div class="fields">
+            <label class="field wide" for="court"><span>Наименование суда <b>*</b></span><input id="court" maxlength="240" placeholder="Например: Мировому судье судебного участка № 15 ..." autocomplete="off"><small>Автоматически определяется только номер судебного участка. Обязательно допишите полное название и регион по оригиналу.</small></label>
+            <label class="field" for="case"><span>Номер дела <b>*</b></span><input id="case" maxlength="100" placeholder="2-1234/2026" autocomplete="off"></label>
+            <label class="field" for="order-date"><span>Дата судебного приказа <b>*</b></span><input id="order-date" type="date"></label>
+            <label class="field wide" for="debtor"><span>Должник — ФИО <b>*</b></span><input id="debtor" maxlength="160" placeholder="Иванов Иван Иванович" autocomplete="off"></label>
+            <label class="field wide" for="address"><span>Адрес должника для корреспонденции <b>*</b></span><textarea id="address" rows="2" maxlength="350" placeholder="Индекс, регион, город, улица, дом, квартира" autocomplete="off"></textarea></label>
+            <label class="field wide" for="claimant"><span>Взыскатель <b>*</b></span><input id="claimant" maxlength="250" placeholder="ООО «Пример»" autocomplete="off"></label>
+          </div>
+          <details id="local-hints" class="instruction" hidden>
+            <summary>Подсказки из вашего документа — показать фрагменты</summary>
+            <p class="small-note">Показаны фрагменты с признаками реквизитов, а не все упоминания слов «должник» и «взыскатель». ФИО после «взыскать с» может быть в другом падеже — перепишите его по оригиналу. Эти фрагменты могут содержать персональные данные: не публикуйте скриншоты с ними. Ничего не отправляется на сервер.</p>
+            <div id="local-hint-list"></div>
+          </details>
+          <label class="check" for="confirm-gpk"><input type="checkbox" id="confirm-gpk"><span>Я сверил(а) реквизиты с оригиналом и подтверждаю, что это именно <strong>судебный приказ по ГПК РФ</strong>, а не судебное решение, приказ по КАС РФ или АПК РФ.</span></label>
+          <div class="actions spread"><button type="button" class="btn pale" data-prev="1">← Назад</button><button type="button" class="btn dark" id="go-3">Далее <span>↗</span></button></div>
+        </section>
+
+        <section class="panel" data-panel="3" aria-labelledby="s3-title" hidden>
+          <div class="step-label">ШАГ 03 / 04</div>
+          <h2 id="s3-title">Когда вы узнали о приказе?</h2>
+          <p class="subhead">Десятидневный срок по ГПК РФ связан с получением копии судебного приказа. Дата вынесения сама по себе не равна дате вручения.</p>
+          <div class="choice-list">
+            <label class="choice" id="choice-normal"><input type="radio" name="route" value="normal" checked><span><strong>Получил(а) копию, срок не пропущен</strong><small>Обычные возражения относительно исполнения приказа</small></span></label>
+            <label class="choice" id="choice-late"><input type="radio" name="route" value="late"><span><strong>Срок мог быть пропущен / копию не получал(а)</strong><small>Возражения с ходатайством и объяснением обстоятельств</small></span></label>
+          </div>
+          <div id="normal-fields" class="route-fields">
+            <label class="field" for="received-date"><span>Когда получили копию приказа? <b>*</b></span><input id="received-date" type="date"></label>
+            <div id="term-note" class="callout soft">Укажите фактическую дату получения. Расчёт срока может зависеть от правил вручения, нерабочих дней и других обстоятельств.</div>
+          </div>
+          <div id="late-fields" class="route-fields" hidden>
+            <div class="alert warning"><strong>Сложная ситуация.</strong> Суд оценит причины и доказательства. Генератор не гарантирует восстановление срока и не заменяет индивидуальную правовую проверку.</div>
+            <label class="field" for="learned-date"><span>Когда узнали о приказе? (если известно)</span><input type="date" id="learned-date"></label>
+            <label class="field wide" for="reason"><span>Почему не смогли подать возражения вовремя? <b>*</b></span><textarea id="reason" rows="5" maxlength="2500" placeholder="Укажите только реальные обстоятельства, даты и способ получения сведений. Не выдумывайте уважительную причину."></textarea></label>
+            <label class="field wide" for="proof"><span>Какими документами подтверждаете обстоятельства? <b>*</b></span><textarea id="proof" rows="3" maxlength="1000" placeholder="Например: почтовое отслеживание, справка о госпитализации, командировочные документы ..."></textarea></label>
+            <label class="check" for="confirm-proof"><input type="checkbox" id="confirm-proof"><span>Подтверждаю, что изложенные обстоятельства соответствуют действительности и я приложу имеющиеся подтверждающие документы.</span></label>
+          </div>
+          <div class="actions spread"><button class="btn pale" type="button" data-prev="2">← Назад</button><button class="btn dark" type="button" id="go-4">Сформировать <span>↗</span></button></div>
+        </section>
+
+        <section class="panel" data-panel="4" aria-labelledby="s4-title" hidden>
+          <div class="step-label">ШАГ 04 / 04</div>
+          <h2 id="s4-title">Ваш документ готов</h2>
+          <p class="subhead">Перед отправкой внимательно проверьте текст. Это проект процессуального документа, а не подтверждение его принятия судом.</p>
+          <div class="result-status">✓ Документ сформирован локально в браузере</div>
+          <div class="preview" id="preview"></div>
+          <div class="download-grid">
+            <button type="button" class="btn dark" id="download-docx">↓ Скачать Word (.docx)</button>
+            <button type="button" class="btn outline" id="download-pdf">▤ Сохранить как PDF</button>
+          </div>
+          <p class="small-note">PDF создаётся через встроенную функцию печати браузера: выберите «Сохранить в PDF» вместо принтера. Сведения не загружаются на сервер.</p>
+          <details class="instruction"><summary>Как подать возражения в суд</summary>
+            <ol><li>Проверьте судебный участок, номер дела, дату приказа и реквизиты.</li><li>Распечатайте и подпишите документ либо используйте допустимую в вашем суде электронную подачу.</li><li>Направьте возражения в суд, вынесший приказ, допустимым способом. При почтовой отправке сохраняйте квитанцию и опись, если применимо.</li><li>Если заявлен пропуск срока, приложите доказательства причин пропуска.</li><li>Сохраните подтверждение подачи и дождитесь судебного определения. Отмена приказа не означает списание долга.</li></ol>
+          </details>
+          <div class="actions"><button class="btn pale" type="button" data-prev="3">← Исправить сведения</button><button class="btn pale" id="reset" type="button">Начать заново</button></div>
+        </section>
+      </div>
+    </div>
+
+    <div id="privacy" class="privacy"><span class="privacy-icon">⌑</span><div><strong>Приватность — не просто обещание</strong><p>Загрузка файла происходит только в память браузера. Распознавание, подготовка текста и экспорт выполняются на устройстве пользователя. На сервере находятся только HTML, CSS, JavaScript и локальные OCR-модели. Мы не собираем содержимое документов и не применяем аналитику в этом инструменте. При этом серверу технически доступен IP-адрес при открытии сайта, а скачанные файлы остаются на вашем устройстве.</p></div></div>
+    <div class="legal-note"><strong>Правовая информация:</strong> версия 1.5 рассчитана на типовые случаи по статьям 128–129 ГПК РФ. При пропуске срока учитываются статья 112 ГПК РФ и обстоятельства, упомянутые в статье 129 ГПК РФ. Результат требует самостоятельной проверки, особенно в сложных ситуациях. <a href="https://www.consultant.ru/document/cons_doc_LAW_39570/9004fef869942e262be4e2563e1d059f1f03fca3/" target="_blank" rel="noopener noreferrer">Ст. 128</a> · <a href="https://www.consultant.ru/document/cons_doc_LAW_39570/fd3336defa264ba3f3adb30a5f7d9b21017a6ca2/" target="_blank" rel="noopener noreferrer">Ст. 129</a> · <a href="https://www.consultant.ru/document/cons_doc_LAW_39570/abaac973fe4a701d09359875f02b25d806b40b80/" target="_blank" rel="noopener noreferrer">Ст. 112</a>.</div>
+  </main>
+
+  <div class="print-only" id="print-sheet" aria-hidden="true"></div>
+  <footer class="footer frame no-print"><a class="brand mini" href="/">INVAL<span class="brand-dot">.</span></a><span>Бесплатный инструмент · 2026</span><span>Данные остаются у вас</span></footer>
+<!-- INVAL_LAUNCH_2026_FREE -->
+</body>
+</html>

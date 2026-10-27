@@ -1,0 +1,10 @@
+7b6f33107946e9d3883d802d470f4e3d0f6bcb6882ba47fda3062447fbaa9c4f  otmena-prikaza/vendor/pdfjs/pdf.mjs
+726432d4eb926a963e88b9e6aeef77a05887beba489adfc0de311cc38b7d98d6  otmena-prikaza/vendor/pdfjs/pdf.worker.mjs
+a8e29918d098b2b06e1012bdaeffb4aec0445c5d5654709023e0bd1f442a80e8  otmena-prikaza/vendor/tesseract/tesseract.min.js
+aca1229639fc9907d86f96e825955a2b7c5716d17f3bc3acd71f9c7ab66181fc  otmena-prikaza/vendor/tesseract/worker.min.js
+249b39a010a357cc0d9d61789a355105bc029091b7d446e651b96a4b4da15713  otmena-prikaza/vendor/tesseract-core/tesseract-core.wasm.js
+bb44be9fe52b5ebe2806462e96fcb1a1980fb2e038eb639ac315b585c3ce2415  otmena-prikaza/vendor/tesseract-core/tesseract-core-simd.wasm.js
+79bc1719fc7e8fd16430621b4df273b56b0172ce7634fe380c01197147350777  otmena-prikaza/vendor/tesseract-core/tesseract-core-lstm.wasm.js
+2773366915c9db41c7bb136d62b18fa581c2c1b175f429c794ef6256bbdf6719  otmena-prikaza/vendor/tesseract-core/tesseract-core-simd-lstm.wasm.js
+f51f5edc992249ff9b70a227b22f242dfa47b2b1bbc7ae0ea74908640c101f6a  otmena-prikaza/vendor/lang/rus.traineddata.gz
+45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91  otmena-prikaza/vendor/lang/eng.traineddata.gz
